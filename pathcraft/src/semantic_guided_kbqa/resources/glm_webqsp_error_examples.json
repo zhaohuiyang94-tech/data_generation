@@ -1,0 +1,686 @@
+{
+  "policy": "Temporal/numeric/first demonstrations: only nonperfect originals with perfect complete-pipeline authored repairs.",
+  "examples": [
+    {
+      "question": "what did james k polk do before he was president",
+      "original_decomposition": [
+        "What is the profession of person James K. Polk?"
+      ],
+      "corrected_decomposition": [
+        "What is the government positions held of politician James K. Polk? What is the office position or title of the government position held?",
+        "The from of the answer government position held is before the from of his presidential government position held."
+      ],
+      "source": {
+        "index": 1,
+        "split": "test",
+        "dataset": "WebQSP"
+      },
+      "issues": [
+        "General profession is not the requested prior office. Return office entities through government positions held, and compare the answer tenure start with the reference presidential tenure start."
+      ],
+      "prompt_issue": "General profession is not the requested prior office. Return office entities through government positions held, and compare the answer tenure start with the reference presidential tenure start.",
+      "review_reason": "General profession is not the requested prior office. Return office entities through government positions held, and compare the answer tenure start with the reference presidential tenure start.",
+      "verification_graph": {
+        "triples": [
+          [
+            "m.042f1",
+            "government.politician.government_positions_held",
+            "V0"
+          ],
+          [
+            "V0",
+            "government.government_position_held.office_position_or_title",
+            "V1"
+          ]
+        ],
+        "answer_var": "V1",
+        "operators": [
+          {
+            "type": "NO_EQUAL",
+            "inputs": [],
+            "input_var": "V1",
+            "attribute_relation_label": [],
+            "attribute_relation_labels": [],
+            "value": "James K. Polk",
+            "value_type": "entity",
+            "_value_entity_id": "m.042f1"
+          },
+          {
+            "type": "LESS_THAN",
+            "inputs": [],
+            "input_var": "V0",
+            "attribute_relation_label": [
+              "government",
+              "government position held",
+              "from"
+            ],
+            "attribute_relation_labels": [],
+            "value": "1845-03-04",
+            "value_type": "date",
+            "_calendar_day_boundary": true
+          }
+        ]
+      },
+      "verification": {
+        "exact_ids": true,
+        "corrected_decomposition_sha256": "c5cf2cc7ddf66d646c345f3149df02888d1d09bd4e49bb86d566a36d3f932bc9",
+        "verification_graph_sha256": "1491706a7a5ef22e3b2ab04a5313eee1894be6dee21b8f477a2e53bd7facc9d7",
+        "baseline_f1": 0.0,
+        "candidate_f1": 1.0,
+        "full_pipeline_verified": true,
+        "baseline_result": "analysis/temporal_numeric_fewshots/baseline_current/000001.json",
+        "candidate_result": "analysis/temporal_numeric_fewshots/final_verified/000001.json",
+        "baseline_result_sha256": "b17eba8fae85964cc9cdf17706be616f8fa747e3be5bec8e681fcb481eae0eb2",
+        "candidate_result_sha256": "bc8335c64444900034d2a79ca3efc6d07cee998c5ac592d2f73aee8d46a550b5",
+        "gold_count": 3,
+        "actual_count": 3,
+        "verified_at": "2026-09-16T10:35:35.837020+00:00",
+        "method": "Saved complete-pipeline nonperfect baseline and perfect authored repair, plus current KG graph re-execution",
+        "score": {
+          "exact": true,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "kg_endpoint": "http://127.0.0.1:3005/sparql",
+        "gold_source": "/workspace/review/semantic_guided_kbqa_webqsp_llama3_review/data/webqsp/KaeDe-main.zip#KaeDe-main/data/processed/WebQSP/WebQSP_test_extracted.json"
+      }
+    },
+    {
+      "question": "who was president after william henry harrison",
+      "original_decomposition": [
+        "Who is the vice president of us president William Henry Harrison?"
+      ],
+      "corrected_decomposition": [
+        "Who is the office holders of government office or title President of the United States? Who is the office holder of the government position held?",
+        "The from of the answer government position held is after the to of the William Henry Harrison reference government position held."
+      ],
+      "source": {
+        "index": 1231,
+        "split": "test",
+        "dataset": "WebQSP"
+      },
+      "issues": [
+        "Vice president alone does not express the requested successor tenure. Query holders of the presidential office and choose the earliest tenure starting at or after the reference holder tenure ends."
+      ],
+      "prompt_issue": "Vice president alone does not express the requested successor tenure. Query holders of the presidential office and choose the earliest tenure starting at or after the reference holder tenure ends.",
+      "review_reason": "Vice president alone does not express the requested successor tenure. Query holders of the presidential office and choose the earliest tenure starting at or after the reference holder tenure ends.",
+      "verification_graph": {
+        "triples": [
+          [
+            "m.060d2",
+            "government.government_office_or_title.office_holders",
+            "V0"
+          ],
+          [
+            "V0",
+            "government.government_position_held.office_holder",
+            "V1"
+          ]
+        ],
+        "answer_var": "V1",
+        "operators": [
+          {
+            "type": "NO_EQUAL",
+            "inputs": [],
+            "input_var": "V1",
+            "attribute_relation_label": [],
+            "attribute_relation_labels": [],
+            "value": "William Henry Harrison",
+            "value_type": "entity"
+          },
+          {
+            "type": "GREATER_OR_EQUAL",
+            "inputs": [],
+            "input_var": "V0",
+            "attribute_relation_label": [
+              "government",
+              "government position held",
+              "from"
+            ],
+            "attribute_relation_labels": [],
+            "value": "1841-04-04",
+            "value_type": "date",
+            "_calendar_day_boundary": true
+          },
+          {
+            "type": "ARGMIN",
+            "inputs": [],
+            "input_var": "V0",
+            "attribute_relation_label": [
+              "government",
+              "government position held",
+              "from"
+            ],
+            "attribute_relation_labels": [],
+            "value": "",
+            "value_type": ""
+          }
+        ]
+      },
+      "verification": {
+        "exact_ids": true,
+        "corrected_decomposition_sha256": "cdc339f3db4d428dcc5f26fc0850990dc6005bc809143db4c56fa792da7a367a",
+        "verification_graph_sha256": "5568d73f63de091c142e2201a53d915642b1332cfacc471cebc8383c8c84bed3",
+        "baseline_f1": 0.0,
+        "candidate_f1": 1.0,
+        "full_pipeline_verified": true,
+        "baseline_result": "analysis/temporal_numeric_fewshots/baseline_current/001231.json",
+        "candidate_result": "analysis/temporal_numeric_fewshots/final_verified/001231.json",
+        "baseline_result_sha256": "60c87d38d39f35d7853a0a5fb74175afc3b5bdc01aaa5443dccc8d19f0aed345",
+        "candidate_result_sha256": "b048e727433dc7ed922d6838f4a57faebcc1cfaf53c763e3f5e19c8cf04670fb",
+        "gold_count": 1,
+        "actual_count": 1,
+        "verified_at": "2026-09-16T10:35:35.874773+00:00",
+        "method": "Saved complete-pipeline nonperfect baseline and perfect authored repair, plus current KG graph re-execution",
+        "score": {
+          "exact": true,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "kg_endpoint": "http://127.0.0.1:3005/sparql",
+        "gold_source": "/workspace/review/semantic_guided_kbqa_webqsp_llama3_review/data/webqsp/KaeDe-main.zip#KaeDe-main/data/processed/WebQSP/WebQSP_test_extracted.json"
+      }
+    },
+    {
+      "question": "what year did the bulls get rodman",
+      "original_decomposition": [
+        "What is the salary of athlete extra rodman? What year is the salary of the athlete salary?"
+      ],
+      "corrected_decomposition": [
+        "What is the teams of pro athlete Dennis Rodman? What year is the sports team roster from?",
+        "Chicago Bulls is the team of the same sports team roster."
+      ],
+      "source": {
+        "index": 503,
+        "split": "test",
+        "dataset": "WebQSP"
+      },
+      "issues": [
+        "Salary is unrelated to the requested team-joining year. Query the roster start and bind that roster to the Bulls."
+      ],
+      "prompt_issue": "Salary is unrelated to the requested team-joining year. Query the roster start and bind that roster to the Bulls.",
+      "review_reason": "Salary is unrelated to the requested team-joining year. Query the roster start and bind that roster to the Bulls.",
+      "verification_graph": {
+        "triples": [
+          [
+            "m.01ztgm",
+            "sports.pro_athlete.teams",
+            "V0"
+          ],
+          [
+            "V0",
+            "sports.sports_team_roster.from",
+            "V1"
+          ],
+          [
+            "V0",
+            "sports.sports_team_roster.team",
+            "m.0jm74"
+          ]
+        ],
+        "answer_var": "V1",
+        "operators": [
+          {
+            "type": "NO_EQUAL",
+            "inputs": [],
+            "input_var": "V1",
+            "attribute_relation_label": [],
+            "attribute_relation_labels": [],
+            "value": "Dennis Rodman",
+            "value_type": "entity",
+            "_value_entity_id": "m.01ztgm"
+          }
+        ]
+      },
+      "verification": {
+        "exact_ids": true,
+        "corrected_decomposition_sha256": "e5600c77313c9e0a190b0761ed13c78de62fcdb525bfed44457de2286cf92abe",
+        "verification_graph_sha256": "cc47ba71a221376f80e4fbd4c87288b77235fbcc5a8fda14002158187de915da",
+        "baseline_f1": 0.0,
+        "candidate_f1": 1.0,
+        "full_pipeline_verified": true,
+        "baseline_result": "analysis/temporal_numeric_fewshots/baseline_current/000503.json",
+        "candidate_result": "analysis/temporal_numeric_fewshots/final_verified/000503.json",
+        "baseline_result_sha256": "180208a08327004fa39d9a2f1d95a7aa2bc1363536da62911b85f488daea3b14",
+        "candidate_result_sha256": "2ed0db40a8f85d8d694d49431ce66dd4e78c5f58d75015406805f9863e83534a",
+        "gold_count": 1,
+        "actual_count": 1,
+        "verified_at": "2026-09-16T10:35:35.894429+00:00",
+        "method": "Saved complete-pipeline nonperfect baseline and perfect authored repair, plus current KG graph re-execution",
+        "score": {
+          "exact": true,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "kg_endpoint": "http://127.0.0.1:3005/sparql",
+        "gold_source": "/workspace/review/semantic_guided_kbqa_webqsp_llama3_review/data/webqsp/KaeDe-main.zip#KaeDe-main/data/processed/WebQSP/WebQSP_test_extracted.json"
+      }
+    },
+    {
+      "question": "how deep is lake merritt oakland",
+      "original_decomposition": [
+        "What is the depth of lake Lake Merritt?"
+      ],
+      "corrected_decomposition": [
+        "What is the depth of body of water Lake Merritt?"
+      ],
+      "source": {
+        "index": 305,
+        "split": "test",
+        "dataset": "WebQSP"
+      },
+      "issues": [
+        "The depth relation belongs to body of water, not lake. Keep the lake entity and correct only its relation source type."
+      ],
+      "prompt_issue": "The depth relation belongs to body of water, not lake. Keep the lake entity and correct only its relation source type.",
+      "review_reason": "The depth relation belongs to body of water, not lake. Keep the lake entity and correct only its relation source type.",
+      "verification_graph": {
+        "triples": [
+          [
+            "m.02_sf_",
+            "geography.body_of_water.depth",
+            "V0"
+          ]
+        ],
+        "answer_var": "V0",
+        "operators": [
+          {
+            "type": "NO_EQUAL",
+            "inputs": [],
+            "input_var": "V0",
+            "attribute_relation_label": [],
+            "attribute_relation_labels": [],
+            "value": "Lake Merritt",
+            "value_type": "entity",
+            "_value_entity_id": "m.02_sf_"
+          }
+        ]
+      },
+      "verification": {
+        "exact_ids": true,
+        "corrected_decomposition_sha256": "92e075e8934a10f2623f407cdf0ca77df38fce6710f7bf04182aa963f53d2e23",
+        "verification_graph_sha256": "74a9002d4ed8163e8d54ba20b8a08bb76c692e3aac860e3bc1cb5b8a0a058569",
+        "baseline_f1": 0.0,
+        "candidate_f1": 1.0,
+        "full_pipeline_verified": true,
+        "baseline_result": "analysis/temporal_numeric_fewshots/baseline_current/000305.json",
+        "candidate_result": "analysis/temporal_numeric_fewshots/final_verified/000305.json",
+        "baseline_result_sha256": "eebc465f1fc0f040947c71e20c406364cb436185bcfb695301d646f47c9e1876",
+        "candidate_result_sha256": "508a2156c0f369c724a9ec2a95c7dfe27bf184db8ccfd5e9d5d778223979fecb",
+        "gold_count": 1,
+        "actual_count": 1,
+        "verified_at": "2026-09-16T10:35:35.909728+00:00",
+        "method": "Saved complete-pipeline nonperfect baseline and perfect authored repair, plus current KG graph re-execution",
+        "score": {
+          "exact": true,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "kg_endpoint": "http://127.0.0.1:3005/sparql",
+        "gold_source": "/workspace/review/semantic_guided_kbqa_webqsp_llama3_review/data/webqsp/KaeDe-main.zip#KaeDe-main/data/processed/WebQSP/WebQSP_test_extracted.json"
+      }
+    },
+    {
+      "question": "who are the senators of virginia 2013",
+      "original_decomposition": [
+        "Who is the governing officials of governmental jurisdiction Virginia? Who is the office holder of the government position held?",
+        "United States Senator is the office position or title of the government position held."
+      ],
+      "corrected_decomposition": [
+        "Who is the members of governmental body United States Senate? Who is the office holder of the government position held?",
+        "Virginia is the district represented of the government position held.",
+        "The government position held covers 2013."
+      ],
+      "source": {
+        "index": 412,
+        "dataset": "WebQSP",
+        "split": "test"
+      },
+      "issues": [
+        "Federal senators are Senate members representing the state, not the state governing officials. Bind district represented to Virginia and retain the 2013 tenure overlap condition."
+      ],
+      "prompt_issue": "Federal senators are Senate members representing the state, not the state governing officials. Bind district represented to Virginia and retain the 2013 tenure overlap condition.",
+      "review_reason": "Federal senators are Senate members representing the state, not the state governing officials. Bind district represented to Virginia and retain the 2013 tenure overlap condition.",
+      "verification_graph": {
+        "triples": [
+          [
+            "m.07t58",
+            "government.governmental_body.members",
+            "V0"
+          ],
+          [
+            "V0",
+            "government.government_position_held.office_holder",
+            "V1"
+          ],
+          [
+            "V0",
+            "government.government_position_held.district_represented",
+            "m.07z1m"
+          ]
+        ],
+        "answer_var": "V1",
+        "operators": [
+          {
+            "type": "NO_EQUAL",
+            "inputs": [],
+            "input_var": "V1",
+            "attribute_relation_label": [],
+            "attribute_relation_labels": [],
+            "value": "United States Senate",
+            "value_type": "entity",
+            "_value_entity_id": "m.07t58"
+          },
+          {
+            "type": "TC",
+            "inputs": [],
+            "input_var": "V0",
+            "attribute_relation_label": [
+              "government",
+              "government position held",
+              "from"
+            ],
+            "attribute_relation_labels": [],
+            "value": "2013",
+            "value_type": "year"
+          }
+        ]
+      },
+      "verification": {
+        "exact_ids": true,
+        "corrected_decomposition_sha256": "d972c1a13104afe511f3b6d02eccfae57851af2922771303678c167d3642f7a8",
+        "verification_graph_sha256": "92cc8146d76d0491f8946bd5099d5e25127395ee5b6ba8a10bca6cf8ecd8433f",
+        "baseline_f1": 0.0,
+        "candidate_f1": 1.0,
+        "full_pipeline_verified": true,
+        "baseline_result": "analysis/temporal_numeric_fewshots/year2013_baseline/000412.json",
+        "candidate_result": "analysis/temporal_numeric_fewshots/final_verified/000412.json",
+        "baseline_result_sha256": "aa8e767d458d863bc8c080a122e41cf1eace3f00d2274c3816e5d5b473f5e2cd",
+        "candidate_result_sha256": "addeffecb661ade3d1adbf0947aecf170892cc5cc54fe17a4a0b668904eb6263",
+        "gold_count": 3,
+        "actual_count": 3,
+        "verified_at": "2026-09-16T10:35:35.929459+00:00",
+        "method": "Saved complete-pipeline nonperfect baseline and perfect authored repair, plus current KG graph re-execution",
+        "score": {
+          "exact": true,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "kg_endpoint": "http://127.0.0.1:3005/sparql",
+        "gold_source": "/workspace/review/semantic_guided_kbqa_webqsp_llama3_review/data/webqsp/KaeDe-main.zip#KaeDe-main/data/processed/WebQSP/WebQSP_test_extracted.json"
+      }
+    },
+    {
+      "question": "Which TV series with a \"tvrage_id\" less than 3050 was Mark Harmon the star of?",
+      "original_decomposition": [
+        "What TV series did Mark Harmon star in, and which of those series have a TVRage ID less than 3050?"
+      ],
+      "corrected_decomposition": [
+        "What is the starring roles of tv actor Mark Harmon? What is the series of the regular tv appearance?",
+        "The tvrage id of the tv program is less than 3050."
+      ],
+      "source": {
+        "index": 9590,
+        "dataset": "CWQ",
+        "split": "train",
+        "decomposition_file": "/workspace/LlamaFactory-main/data/cwq_decompose_train.json",
+        "row_index": 9590
+      },
+      "issues": [
+        "The colloquial combined question does not provide a stable actor-to-series path. Use starring roles then series, with the TVRage ID numeric comparison on the program."
+      ],
+      "prompt_issue": "The colloquial combined question does not provide a stable actor-to-series path. Use starring roles then series, with the TVRage ID numeric comparison on the program.",
+      "review_reason": "The colloquial combined question does not provide a stable actor-to-series path. Use starring roles then series, with the TVRage ID numeric comparison on the program.",
+      "verification_graph": {
+        "triples": [
+          [
+            "m.037gjc",
+            "tv.tv_actor.starring_roles",
+            "V0"
+          ],
+          [
+            "V0",
+            "tv.regular_tv_appearance.series",
+            "V1"
+          ]
+        ],
+        "answer_var": "V1",
+        "operators": [
+          {
+            "type": "NO_EQUAL",
+            "inputs": [],
+            "input_var": "V1",
+            "attribute_relation_label": [],
+            "attribute_relation_labels": [],
+            "value": "Mark Harmon",
+            "value_type": "entity",
+            "_value_entity_id": "m.037gjc"
+          },
+          {
+            "type": "LESS_THAN",
+            "inputs": [],
+            "input_var": "V1",
+            "attribute_relation_label": [
+              "tv",
+              "tv program",
+              "tvrage id"
+            ],
+            "attribute_relation_labels": [],
+            "value": "3050",
+            "value_type": "number",
+            "_numeric_comparison_cast": true
+          }
+        ]
+      },
+      "verification": {
+        "exact_ids": true,
+        "corrected_decomposition_sha256": "83cf58b145cc41ce4ee506e687ea32db7de0831883ee46cae4b8d6bed2fce71b",
+        "verification_graph_sha256": "72f3a7413d63f25d01a625f37f86d7254b26c2b60a8cb5750c680b49438d3d70",
+        "baseline_f1": 0.0,
+        "candidate_f1": 1.0,
+        "full_pipeline_verified": true,
+        "baseline_result": "analysis/temporal_numeric_fewshots/cwq_baseline_final/009590.json",
+        "candidate_result": "analysis/temporal_numeric_fewshots/final_verified/009590.json",
+        "baseline_result_sha256": "73fcb7ed09dda918e27ee2f7dc51e1817934913e281e64edce9acd38ad8fdbb5",
+        "candidate_result_sha256": "cf6593b08064f14c49b3f95803552845469dae6203498422a8fce90193d9ae82",
+        "gold_count": 4,
+        "actual_count": 4,
+        "verified_at": "2026-09-16T10:35:36.852318+00:00",
+        "method": "Saved complete-pipeline nonperfect baseline and perfect authored repair, plus current KG graph re-execution",
+        "score": {
+          "exact": true,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "kg_endpoint": "http://127.0.0.1:3005/sparql",
+        "gold_source": "/workspace/review/semantic_guided_kbqa_webqsp_llama3_review/data/webqsp/KaeDe-main.zip#KaeDe-main/data/processed/CWQ/CWQ_train_extracted.json"
+      }
+    },
+    {
+      "question": "who did shaq first play for",
+      "original_decomposition": [
+        "What is the teams of pro athlete Shaquille O'Neal? Who is the team of the sports team roster?"
+      ],
+      "corrected_decomposition": [
+        "What is the teams of pro athlete Shaquille O'Neal? Who is the team of the sports team roster?",
+        "Professional sports team is the type of the team.",
+        "The answer is the team of the earliest sports team roster by from."
+      ],
+      "source": {
+        "index": 985,
+        "split": "test",
+        "dataset": "WebQSP"
+      },
+      "issues": [
+        "First team requires the earliest professional team membership, not all teams or the latest roster. Keep the roster bridge, restrict its team to a professional sports team, and minimize the roster from date."
+      ],
+      "prompt_issue": "First team requires the earliest professional team membership, not all teams or the latest roster. Keep the roster bridge, restrict its team to a professional sports team, and minimize the roster from date.",
+      "review_reason": "First team requires the earliest professional team membership, not all teams or the latest roster. Keep the roster bridge, restrict its team to a professional sports team, and minimize the roster from date.",
+      "verification_graph": {
+        "triples": [
+          [
+            "m.012xdf",
+            "sports.pro_athlete.teams",
+            "V0"
+          ],
+          [
+            "V0",
+            "sports.sports_team_roster.team",
+            "V1"
+          ],
+          [
+            "V1",
+            "type.object.type",
+            "sports.professional_sports_team"
+          ]
+        ],
+        "answer_var": "V1",
+        "operators": [
+          {
+            "type": "NO_EQUAL",
+            "inputs": [],
+            "input_var": "V1",
+            "attribute_relation_label": [],
+            "attribute_relation_labels": [],
+            "value": "Shaquille O'Neal",
+            "value_type": "entity",
+            "_value_entity_id": "m.012xdf"
+          },
+          {
+            "type": "ARGMIN",
+            "inputs": [],
+            "input_var": "V0",
+            "attribute_relation_label": [
+              "sports",
+              "sports team roster",
+              "from"
+            ],
+            "attribute_relation_labels": [],
+            "value": "",
+            "value_type": "",
+            "_order_temporal_lexical": true
+          }
+        ]
+      },
+      "verification": {
+        "exact_ids": true,
+        "full_pipeline_verified": true,
+        "baseline_f1": 0.0,
+        "candidate_f1": 1.0,
+        "baseline_result": "analysis/temporal_numeric_fewshots/ordinal_before_final/000985.json",
+        "candidate_result": "analysis/temporal_numeric_fewshots/ordinal_after_final/000985.json",
+        "baseline_result_sha256": "d44d5e9113f86602fe67309fd70c641bb2b1ae6d4c71ebc056a749d8bb872d36",
+        "candidate_result_sha256": "0f54aec91ef98506a9677b5c0d306f0983b6bd5781aa70d6cebcc938e185fc99",
+        "corrected_decomposition_sha256": "63aaef4b7d27362f4d4389d6b4d40e278b531e6ae063eec10a7db8841c2ad09e",
+        "verification_graph_sha256": "106ca995bb42f448f1748532f37e9ada2404579dd736ca4a12f625e1a48994b2",
+        "gold_count": 1,
+        "actual_count": 1,
+        "verified_at": "2026-09-16T10:35:36.933766+00:00",
+        "method": "Saved complete-pipeline nonperfect baseline and perfect authored repair, plus current KG graph re-execution",
+        "score": {
+          "exact": true,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "kg_endpoint": "http://127.0.0.1:3005/sparql",
+        "gold_source": "/workspace/review/semantic_guided_kbqa_webqsp_llama3_review/data/webqsp/KaeDe-main.zip#KaeDe-main/data/processed/WebQSP/WebQSP_test_extracted.json"
+      }
+    },
+    {
+      "question": "when was the last time the new england patriots won the superbowl",
+      "original_decomposition": [
+        "When is the championships of sports team New England Patriots?",
+        "Super Bowl is the championship of the sports championship event."
+      ],
+      "corrected_decomposition": [
+        "What is the championships of sports team New England Patriots?",
+        "Super Bowl is the championship of the same sports championship event.",
+        "The answer is the latest sports championship event by the end date of that same sports championship event."
+      ],
+      "source": {
+        "index": 1349,
+        "row_index": 1349,
+        "split": "train",
+        "dataset": "WebQSP",
+        "decomposition_file": "data/webqsp/finetune/decompose_train.json"
+      },
+      "issues": [
+        "The current plan identifies the team and championship category but omits the latest-event ordering. Keep the sports championship event as the answer, bind the Super Bowl category to that same event, and order candidate events by the end date owned by each event."
+      ],
+      "prompt_issue": "The current plan identifies the team and championship category but omits the latest-event ordering. Keep the sports championship event as the answer, bind the Super Bowl category to that same event, and order candidate events by the end date owned by each event.",
+      "review_reason": "The current plan identifies the team and championship category but omits the latest-event ordering. Keep the sports championship event as the answer, bind the Super Bowl category to that same event, and order candidate events by the end date owned by each event.",
+      "verification_graph": {
+        "triples": [
+          [
+            "V0",
+            "sports.sports_championship_event.championship",
+            "m.06x5s"
+          ],
+          [
+            "m.05g3b",
+            "sports.sports_team.championships",
+            "V0"
+          ]
+        ],
+        "answer_var": "V0",
+        "operators": [
+          {
+            "type": "ARGMAX",
+            "inputs": [],
+            "input_var": "V0",
+            "attribute_relation_label": [
+              "time",
+              "event",
+              "end date"
+            ],
+            "attribute_relation_labels": [],
+            "value": "",
+            "value_type": "",
+            "attribute_relation_id": "time.event.end_date"
+          },
+          {
+            "type": "NO_EQUAL",
+            "inputs": [],
+            "input_var": "V0",
+            "attribute_relation_label": [],
+            "attribute_relation_labels": [],
+            "value": "New England Patriots",
+            "value_type": "entity",
+            "_value_entity_id": "m.05g3b"
+          }
+        ]
+      },
+      "verification": {
+        "exact_ids": true,
+        "full_pipeline_verified": true,
+        "baseline_f1": 0.5,
+        "candidate_f1": 1.0,
+        "baseline_result": "analysis/latest_championship_train_validation/baseline/001349.json",
+        "candidate_result": "analysis/latest_championship_train_validation/candidate_v2/001349.json",
+        "baseline_result_sha256": "7150dbd369a2ba8dace375cb5fd26fe1c9d00735173e5d486cd59c34d07885f9",
+        "candidate_result_sha256": "7fe729c02732c5b9f13b347e96600f1b2d21a65f5872af76ed2cdeeeb2841009",
+        "corrected_decomposition_sha256": "d994a1a82da0d8ad4e06c9e92659b8599d2e43798aae2b13b686e3b77ef0755a",
+        "verification_graph_sha256": "107aa4a3c2b21b9f33c6f0617944792fbab50532eb4c59c0ff77d98df71deae3",
+        "gold_count": 1,
+        "actual_count": 1,
+        "verified_at": "2026-09-16T10:35:37.028382+00:00",
+        "method": "Saved complete-pipeline nonperfect baseline and perfect authored repair, plus current KG graph re-execution",
+        "score": {
+          "exact": true,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "kg_endpoint": "http://127.0.0.1:3005/sparql",
+        "gold_source": "/workspace/review/semantic_guided_kbqa_webqsp_llama3_review/data/webqsp/KaeDe-main.zip#KaeDe-main/data/processed/WebQSP/WebQSP_train_extracted.json"
+      }
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 # GPT-5.4 数据飞轮
 
 本仓库提供运行代码和 WebQSP 输入训练数据，不包含历史生成结果和 trace。
-CWQ 数据和问答系统见 https://github.com/zhaohuiyang94-tech/cwq_v42 。
+CWQ 数据和问答系统见 https://github.com/zhaohuiyang94-tech/data_generation/tree/main/pathcraft 。
 
 ## 独立运行
 
@@ -90,7 +90,7 @@ operator 示例。比较操作在形式定义中可写 `GT/GE/LT/LE`，JSON 标�
 无需 API key：
 
 ```bash
-cd gpt54_data_flywheel
+cd data_generation
 PYTHONPATH=src python3 -m gpt54_data_flywheel preflight
 ```
 
@@ -102,7 +102,7 @@ operator 和 compose 可执行 operator。
 设置 key 后先跑 3 条，不建议第一次就处理完整训练集：
 
 ```bash
-cd gpt54_data_flywheel
+cd data_generation
 export OPENAI_API_KEY='your-key'
 
 PYTHONPATH=src python3 -m gpt54_data_flywheel generate \
@@ -215,3 +215,7 @@ PYTHONPATH=src python3 -m gpt54_data_flywheel preflight
 工程默认直接复用 `webqsp_mas.llm_client`，需要其已有的 `requests` 依赖，但不需要
 OpenAI SDK，也不会记录 API key。`accepted.jsonl` 记录 response id、token usage 和
 每轮校验结果，便于审计数据来源。
+
+## PathCraft 问答系统
+
+`pathcraft/` 包含 CWQ 和 WebQSP 问答运行代码、数据、配置及检索索引。环境配置与运行方法见 [PathCraft README](pathcraft/README.md)。

@@ -1,0 +1,21 @@
+### Base model and completed LoRA adapter
+model_name_or_path: /llm/Meta-Llama-3.1-8B-Instruct
+adapter_name_or_path: /workspace/multi-agent/model/llama3.1-8b-cwq/cwq_25328_goldfirst_strict_v2/decompose
+finetuning_type: lora
+template: llama3
+trust_remote_code: true
+
+### LlamaFactory vLLM backend
+# tensor_parallel_size is inferred from CUDA_VISIBLE_DEVICES (4 GPUs).
+infer_backend: vllm
+infer_dtype: float16
+vllm_maxlen: 4096
+vllm_gpu_util: 0.90
+vllm_enforce_eager: true
+vllm_max_lora_rank: 16
+vllm_config: '{"max_num_seqs": 16}'
+
+### Deterministic decomposition generation
+do_sample: false
+max_new_tokens: 1024
+repetition_penalty: 1.0

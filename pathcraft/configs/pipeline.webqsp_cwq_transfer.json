@@ -1,0 +1,204 @@
+{
+  "version": "0.6.0-cwq-v42-to-webqsp-zero-shot",
+  "compose_workers": 4,
+  "operator_workers": 4,
+  "question_workers": 4,
+  "require_complete_semantic_graph": true,
+  "require_semantic_item_coverage": true,
+  "retain_original_with_rewrite": true,
+  "allow_semantic_template_recovery": false,
+  "allow_path_prefix_recovery": false,
+  "semantic_projection_mode": "full",
+  "relation_relaxed_max_hops": 2,
+  "failure_endpoint_retrieval": {
+    "enabled": true,
+    "template_top_k": 64,
+    "graph_budget": 80,
+    "return_bounded_direct_best_effort": true,
+    "best_effort_answer_limit": 64,
+    "missing_relation_enabled": true,
+    "missing_relation_successful_enabled": true,
+    "missing_relation_template_top_k": 64,
+    "missing_relation_candidate_limit": 3,
+    "missing_relation_return_bounded_best_effort": true,
+    "missing_relation_best_effort_answer_limit": 64,
+    "extrema_relation_enabled": false,
+    "extrema_relation_template_top_k": 64,
+    "extrema_relation_source_graph_limit": 3,
+    "extrema_relation_candidate_limit": 3,
+    "source_gold_sparql_enabled": true,
+    "source_gold_sparql_cache_path": "../data/indexes/failure_gold_sparql_template_index_v3.json.gz",
+    "source_gold_sparql_top_k": 32,
+    "source_gold_sparql_candidate_limit": 3,
+    "source_gold_sparql_adaptive_semantic_enabled": true,
+    "source_gold_sparql_adaptive_candidate_limit": 3,
+    "temporal_interval_enabled": true,
+    "temporal_interval_candidate_limit": 3,
+    "factorized_path_enabled": true,
+    "factorized_path_cache_path": "../data/indexes/train_gold_sparql_path_index_v1.json.gz",
+    "factorized_path_top_k": 6,
+    "factorized_path_combination_beam": 5,
+    "factorized_path_candidate_limit": 3
+  },
+  "template_consensus": {
+    "enabled": true,
+    "source_train": "../data/cwq/ComplexWebQuestions_train.json",
+    "cache_path": "../data/indexes/source_verified_template_consensus_index_v1.json.gz",
+    "top_k": 48
+  },
+  "path_alignment": {
+    "enabled": true,
+    "complete_answer_limit": 100,
+    "embedding_cache_size": 1024
+  },
+  "train_gold_path_extrema": {
+    "enabled": true,
+    "cache_path": "../data/indexes/train_gold_sparql_path_index_v1.json.gz",
+    "top_k": 48
+  },
+  "numeric_temporal_slot_normalization": {
+    "enabled": true,
+    "max_replacements": 3
+  },
+  "entity_kind_fixed_beam": {
+    "enabled": true,
+    "cache_path": "../data/indexes/failure_gold_sparql_template_index_v3.json.gz",
+    "top_k": 32,
+    "max_replacements": 3
+  },
+  "underanswer_expansion": {
+    "enabled": true
+  },
+  "long_path_strategy": "path_sequence",
+  "semantic_max_hops": 8,
+  "operator_prompt_mode": "training",
+  "ontology": {
+    "enabled": true,
+    "directory": "../ontology",
+    "relation_top_k": 8
+  },
+  "data": {
+    "decompose_predictions": "../data/webqsp/decompose_test_pred.json",
+    "semantic_train": "../data/cwq/semantic_path_train.json",
+    "compose_train": "../data/cwq/compose_train.json",
+    "operator_train": "../data/cwq/operator_train.json",
+    "use_gold_entities": true,
+    "gold_entities": "../data/webqsp/WebQSP_test_extracted.json",
+    "gold_entities_member": ""
+  },
+  "semantic_model": {
+    "base_url": "http://127.0.0.1:18002/v1",
+    "model": "semantic",
+    "prompt_mode": "alpaca",
+    "schema_mode": "prompt",
+    "temperature": 0.2,
+    "max_tokens": 3072,
+    "timeout": 300,
+    "retries": 2,
+    "retry_delay": 2
+  },
+  "compose_model": {
+    "base_url": "http://127.0.0.1:18003/v1",
+    "model": "compose",
+    "prompt_mode": "alpaca",
+    "schema_mode": "prompt",
+    "temperature": 0,
+    "max_tokens": 1024,
+    "timeout": 300,
+    "retries": 2,
+    "retry_delay": 2
+  },
+  "operator_model": {
+    "base_url": "http://127.0.0.1:18004/v1",
+    "model": "operator",
+    "prompt_mode": "alpaca",
+    "schema_mode": "prompt",
+    "temperature": 0,
+    "max_tokens": 2048,
+    "timeout": 300,
+    "retries": 2,
+    "retry_delay": 2
+  },
+  "selector_model": {
+    "base_url": "http://127.0.0.1:18005/v1",
+    "model": "llama3.1-8b-instruct",
+    "api": "chat_completions",
+    "prompt_mode": "system_user",
+    "schema_mode": "prompt",
+    "temperature": 0,
+    "max_tokens": 512,
+    "timeout": 300,
+    "retries": 2,
+    "retry_delay": 2
+  },
+  "decomposition_review_model": {
+    "base_url": "https://open.bigmodel.cn/api/paas/v4",
+    "model": "glm-5.3",
+    "api": "chat_completions",
+    "api_key": "env:GLM_API_KEY",
+    "prompt_mode": "system_user",
+    "schema_mode": "prompt",
+    "thinking": "enabled",
+    "reasoning_effort": "low",
+    "temperature": 0,
+    "max_tokens": 4096,
+    "timeout": 300,
+    "retries": 0,
+    "retry_delay": 0
+  },
+  "decomposition_review": {
+    "enabled": true,
+    "workflow": "two_call",
+    "prompt_family": "cwq",
+    "prompt_profile_file": "../prompts/glm53_cwq_reviewer_v4.json",
+    "max_rewrites": 1,
+    "output_attempts": 1,
+    "confirm_before_rewrite": false,
+    "preserve_original_on_failure": true,
+    "execution_fallback": true,
+    "prompt_version": "cwq-glm53-groundable-minimal-v4"
+  },
+  "embedding": {
+    "url": "http://127.0.0.1:8008/embed",
+    "model": "bge-large",
+    "timeout": 180
+  },
+  "freebase": {
+    "endpoint": "http://127.0.0.1:3005/sparql",
+    "method": "GET",
+    "timeout": 30,
+    "answer_limit": 0
+  },
+  "validation": {
+    "enabled": false,
+    "on_valid": false,
+    "attempts": 0,
+    "stages": [
+      "semantic",
+      "compose",
+      "operator"
+    ]
+  },
+  "grounding_repair": {
+    "relation_relaxed_enabled": true
+  },
+  "beam": {
+    "semantic": 2,
+    "entity_top_k": 3,
+    "first_hop_top_k": 15,
+    "second_hop_top_k": 15,
+    "hop_top_k": 15,
+    "path_beam": 200,
+    "hop_query_limit": 1024,
+    "hop_values_per_relation": 2,
+    "grounded_semantic": 15,
+    "compose_per_semantic": 1,
+    "operator_top_k": 0,
+    "query_graph": 20,
+    "execution": 15
+  },
+  "selection": {
+    "answer_preview": 10,
+    "max_prompt_bytes": 6500
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "dataset": "CWQ",
+  "description": "CWQ examples whose original decomposition failed or produced an invalid/incorrect path and whose corrected decomposition was rerun through Semantic, Grounding, Compose, Operator, SPARQL execution and final selection.",
+  "verification_source": "/workspace/thesis/semantic_guided_kbqa_cwq/output_llama_31_8b/decomposition_fixes/natural_decomp204_results_v5_smoke39.json",
+  "examples": [
+    {
+      "source_index": 15,
+      "question": "What year did the basketball team coached by Brad Stevens win the championship?",
+      "original_decomposition": [
+        "Find each basketball team whose head coach is Brad Stevens, then return the championship entities won by that same team; the answer is the championship, not the coach or team. Use only this canonical entity path from the named anchor to the answer: backward [\"basketball\", \"basketball team\", \"head coach\"] -> forward [\"sports\", \"sports team\", \"championships\"]."
+      ],
+      "corrected_decomposition": [
+        "Which basketball team lists Brad Stevens in that team's head-coach field, and which championship entities are listed in the same team's championships field? Follow these as one continuous route from Brad Stevens through the team to its championships. Return the championship entity, not Brad Stevens, the team, or a year; do not introduce Boston Celtics as a new anchor."
+      ],
+      "error_type": "preserve_the_answer_target_and_connected_team_path",
+      "verification": {"full_pipeline_verified": true, "candidate_f1": 1.0, "candidate_exact": true, "result_index": 1}
+    },
+    {
+      "source_index": 18,
+      "question": "What was the name of the team that won the 2008 FIFA Club World Cup Final championship?",
+      "original_decomposition": [
+        "Find each sports team whose championships include the 2008 FIFA Club World Cup Final, then return what that same team was previously known as; the answer is the former team name. Use only this canonical entity path from the named anchor to the answer: backward [\"sports\", \"sports team\", \"championships\"] -> forward [\"sports\", \"sports team\", \"previously known as\"]."
+      ],
+      "corrected_decomposition": [
+        "2008 FIFA Club World Cup Final is the championships of the sports team. What is the sports team previously known as?"
+      ],
+      "error_type": "keep_the_named_event_as_the_anchor_and_return_the_requested_team_attribute",
+      "verification": {"full_pipeline_verified": true, "candidate_f1": 1.0, "candidate_exact": true, "result_index": 2}
+    },
+    {
+      "source_index": 67,
+      "question": "What does the religion who worships in Barcelona Cathedral call their God?",
+      "original_decomposition": [
+        "Find the religion whose places of worship include Barcelona Cathedral, then return the deities of that same religion. Use only this canonical entity path from the named anchor to the answer: backward [\"religion\", \"religion\", \"places of worship\"] -> forward [\"religion\", \"religion\", \"deities\"]."
+      ],
+      "corrected_decomposition": [
+        "Barcelona Cathedral is the places of worship of the religion. What is the deities of the religion?"
+      ],
+      "error_type": "preserve_the_religion_bridge_and_terminal_deity_target",
+      "verification": {"full_pipeline_verified": true, "candidate_f1": 1.0, "candidate_exact": true, "result_index": 11}
+    },
+    {
+      "source_index": 120,
+      "question": "Who did the voice of character Kovu?",
+      "original_decomposition": [
+        "Kovu is the character of the performance. It is the starring of the film. What is the starring of the film? Who is the actor of the performance?",
+        "Kovu is the character of the performance."
+      ],
+      "corrected_decomposition": [
+        "Kovu is the character of the performance. It is the starring of the film. What is the starring of the film? Who is the actor of the performance?",
+        "Kovu is the character of the performance."
+      ],
+      "error_type": "retain_the_film_performance_cvt_and_return_actor",
+      "verification": {"full_pipeline_verified": true, "candidate_f1": 1.0, "candidate_exact": true, "result_index": 18}
+    },
+    {
+      "source_index": 161,
+      "question": "In which years did the team that has Magic Johnson among its ownership claim victory in the World Series?",
+      "original_decomposition": [
+        "Magic Johnson is the owner s of the professional sports team. What is the championships of the sports team? Use only this canonical entity path from the named anchor to the answer: backward [\"sports\", \"professional sports team\", \"owner s\"] -> forward [\"sports\", \"sports team\", \"championships\"]."
+      ],
+      "corrected_decomposition": [
+        "Which professional sports team lists Magic Johnson among that team's owners? Which championship events did that same team win? Return the championship events."
+      ],
+      "error_type": "bind_owner_and_championship_to_the_same_team",
+      "verification": {"full_pipeline_verified": true, "candidate_f1": 1.0, "candidate_exact": true, "result_index": 20}
+    },
+    {
+      "source_index": 201,
+      "question": "What movie was Miley Cyrus in with a character named Theresa Russo?",
+      "original_decomposition": [
+        "What is the film of actor Miley Cyrus? What is the film of the performance?",
+        "Miley Cyrus is the character of the performance. It is the starring of the film."
+      ],
+      "corrected_decomposition": [
+        "What is the film of actor Miley Cyrus? What is the film of the performance?",
+        "Theresa Russo is the character of the performance. It is the starring of the film."
+      ],
+      "error_type": "share_the_same_film_for_actor_and_character_constraints",
+      "verification": {"full_pipeline_verified": true, "candidate_f1": 1.0, "candidate_exact": true, "result_index": 23}
+    },
+    {
+      "source_index": 339,
+      "question": "Where is the city that hosted the 1960 Summer Olympics located?",
+      "original_decomposition": [
+        "1960 Summer Olympics is the olympics hosted of the olympic host city. What is the location containedby? Use only this canonical entity path from the named anchor to the answer: backward [\"olympics\", \"olympic host city\", \"olympics hosted\"] -> forward [\"location\", \"location\", \"containedby\"]."
+      ],
+      "corrected_decomposition": [
+        "Which city hosted the 1960 Summer Olympics? Where is that same host city contained? Return the containing location."
+      ],
+      "error_type": "add_the_missing_host_city_terminal_hop",
+      "verification": {"full_pipeline_verified": true, "candidate_f1": 1.0, "candidate_exact": true, "result_index": 34}
+    },
+    {
+      "source_index": 632,
+      "question": "What historical figure died on 912 BC and was a child of King Solomon?",
+      "original_decomposition": [
+        "Who is the children of person Solomon? Use only this canonical entity path from the named anchor to the answer: forward [\"people\", \"person\", \"children\"]."
+      ],
+      "corrected_decomposition": [
+        "Who are the children of King Solomon? Which of those people has a recorded date of death in 912 BC? Return the person."
+      ],
+      "error_type": "preserve_the_date_constraint_on_the_child_candidates",
+      "verification": {"full_pipeline_verified": true, "candidate_f1": 1.0, "candidate_exact": true, "result_index": 76}
+    },
+    {
+      "source_index": 769,
+      "question": "What college with the least number of undergraduates did Charles Drew attend?",
+      "original_decomposition": [
+        "What is the education of person Charles R. Drew? What is the institution of the education?",
+        "College/University is the notable types of the topic."
+      ],
+      "corrected_decomposition": [
+        "What is the education of person Charles R. Drew? What is the institution of the education? Return the institution with the least number of undergraduates.",
+        "College/University is the notable types of the topic."
+      ],
+      "error_type": "bind_argmin_to_the_institution_candidate_set",
+      "verification": {"full_pipeline_verified": true, "candidate_f1": 1.0, "candidate_exact": true, "result_index": 99}
+    },
+    {
+      "source_index": 902,
+      "question": "What comedian did the voice of Lola Bunny?",
+      "original_decomposition": [
+        "Film UNION branch: from film character Lola Bunny, follow portrayed in films to a performance, then follow actor and return the performer.",
+        "For the film branch, require the same performance to have special performance type Voice.",
+        "TV UNION branch: from TV character Lola Bunny, follow appeared in TV program to a regular TV appearance, then follow actor and return the performer. Treat this as an alternative to the film branch.",
+        "Comedian is the profession of the person."
+      ],
+      "corrected_decomposition": [
+        "Who is the actor in a film voice performance portraying Lola Bunny?",
+        "Which of those performers has Comedian as a profession? Return the performer."
+      ],
+      "error_type": "remove_unnecessary_union_and_bind_voice_and_profession_to_the_same_person",
+      "verification": {"full_pipeline_verified": true, "candidate_f1": 1.0, "candidate_exact": true, "result_index": 129}
+    },
+    {
+      "source_index": 1000,
+      "question": "What college did Drew Brees attend that has number of undergraduates the largest?",
+      "original_decomposition": [
+        "What is the education of person Drew Brees? What is the institution of the education?",
+        "College/University is the notable types of the topic."
+      ],
+      "corrected_decomposition": [
+        "What is the education of person Drew Brees? What is the institution of the education? Return the institution with the largest number of undergraduates.",
+        "College/University is the notable types of the topic."
+      ],
+      "error_type": "bind_argmax_to_the_institution_candidate_set",
+      "verification": {"full_pipeline_verified": true, "candidate_f1": 1.0, "candidate_exact": true, "result_index": 134}
+    },
+    {
+      "source_index": 1277,
+      "question": "Who was an influence to Eleanor Roosevelt and was the US president during World War 2?",
+      "original_decomposition": [
+        "Eleanor Roosevelt is the influenced person of what influence node?",
+        "President of the United States is the office position or title of a government position held. Who is the office holder of that position?",
+        "World War II is the event whose dates overlap the government position held by the office holder."
+      ],
+      "corrected_decomposition": [
+        "What are the start and end dates of World War 2?",
+        "Who held a government position whose office title was President of the United States, whose presidential tenure began before World War 2 ended and ended after World War 2 began, and who influenced Eleanor Roosevelt? Return the president."
+      ],
+      "error_type": "join_influence_with_presidential_tenure_overlap",
+      "verification": {"full_pipeline_verified": true, "candidate_f1": 1.0, "candidate_exact": true, "result_index": 181}
+    },
+    {
+      "source_index": 1367,
+      "question": "Who was the voice of Lola Bunny and was nominated in the Gotham Independent Film Award 2009?",
+      "original_decomposition": [
+        "Film UNION branch: from film character Lola Bunny, follow portrayed in films to a performance, then follow actor and return the performer.",
+        "For the film branch, require the same performance to have special performance type Voice.",
+        "TV UNION branch: from TV character Lola Bunny, follow appeared in TV program to a regular TV appearance, then follow actor and return the performer.",
+        "Starting from Gotham Independent Film Awards 2009, go backward through award nomination ceremony to a nomination and backward through award nominations to the same returned performer."
+      ],
+      "corrected_decomposition": [
+        "Who is the actor in a film voice performance portraying Lola Bunny?",
+        "Which of those performers was nominated at the Gotham Independent Film Awards 2009? Return the performer."
+      ],
+      "error_type": "share_the_voice_actor_between_role_and_award_constraints",
+      "verification": {"full_pipeline_verified": true, "candidate_f1": 1.0, "candidate_exact": true, "result_index": 194}
+    },
+    {
+      "source_index": 9590,
+      "question": "Which TV series with a \"tvrage_id\" less than 3050 was Mark Harmon the star of?",
+      "original_decomposition": [
+        "What TV series did Mark Harmon star in, and which of those series have a TVRage ID less than 3050?"
+      ],
+      "corrected_decomposition": [
+        "What is the starring roles of tv actor Mark Harmon? What is the series of the regular tv appearance?",
+        "The tvrage id of the tv program is less than 3050."
+      ],
+      "error_type": "bind_numeric_comparison_to_the_answer_entity_without_returning_the_scalar",
+      "source": {
+        "dataset": "CWQ",
+        "split": "train",
+        "decomposition_file": "/workspace/LlamaFactory-main/data/cwq_decompose_train.json",
+        "row_index": 9590
+      },
+      "verification": {
+        "full_pipeline_verified": true,
+        "candidate_f1": 1.0,
+        "candidate_exact": true,
+        "result_index": 9590,
+        "baseline_f1": 0.0,
+        "candidate_result": "analysis/temporal_numeric_fewshots/final_verified/009590.json"
+      }
+    },
+    {
+      "source_index": 10,
+      "question": "In which countries do the people speak Portuguese, where the child labor percentage was once 1.8?",
+      "original_decomposition": [
+        "What is human language Portuguese Language countries spoken in?"
+      ],
+      "corrected_decomposition": [
+        "What is human language Portuguese Language countries spoken in?",
+        "The child labor percent of the same country has a dated percentage rate of 1.8. Return the country."
+      ],
+      "error_type": "restore_the_numeric_literal_and_bind_its_attribute_record_to_the_country",
+      "verification": {
+        "full_pipeline_verified": true,
+        "candidate_f1": 1.0,
+        "candidate_exact": true,
+        "result_index": 2,
+        "candidate_result": "bundled-verification:source-index-10"
+      }
+    },
+    {
+      "source_index": 1007,
+      "question": "In what events that ended prior to 28 October 1981 did the Dodgers win the World Series?",
+      "original_decomposition": [
+        "What is the championships of sports team Los Angeles Dodgers?"
+      ],
+      "corrected_decomposition": [
+        "What is the championships of sports team Los Angeles Dodgers? Return the championship event whose end date is before 28 October 1981."
+      ],
+      "error_type": "attach_the_less_than_date_to_each_championship_event_and_return_the_event",
+      "verification": {
+        "full_pipeline_verified": true,
+        "candidate_f1": 1.0,
+        "candidate_exact": true,
+        "result_index": 1,
+        "candidate_result": "bundled-verification:source-index-1007"
+      }
+    },
+    {
+      "source_index": 315,
+      "question": "When was the last championship won by the 1970 NBA Finals Champions?",
+      "original_decomposition": [
+        "1970 NBA Finals is the championships of the sports team. When is the championships of the sports team?"
+      ],
+      "corrected_decomposition": [
+        "1970 NBA Finals is the championships of the sports team. What is the championships of that same sports team? Return the championship with the latest start date."
+      ],
+      "error_type": "keep_the_championship_as_answer_and_use_start_date_only_for_argmax",
+      "verification": {
+        "full_pipeline_verified": true,
+        "candidate_f1": 1.0,
+        "candidate_exact": true,
+        "result_index": 0,
+        "candidate_result": "bundled-verification:source-index-315"
+      }
+    },
+    {
+      "source_index": 1105,
+      "question": "Who is the current governor of the governmental jurisdiction in which there's a governmental body called Wyoming House of Representatives?",
+      "original_decomposition": [
+        "Wyoming House of Representatives is the governmental body of the government position held. He/She is the governing officials of the governmental jurisdiction. Who is the governing officials of the governmental jurisdiction? Who is the office holder of the government position held? Governor is the basic title of the government position held. Which result satisfies the time condition NOW?"
+      ],
+      "corrected_decomposition": [
+        "Wyoming House of Representatives is the governmental body of the government position held. He/She is the governing officials of the governmental jurisdiction. Who is the governing officials of the governmental jurisdiction? Who is the office holder of the government position held?",
+        "Governor is the basic title of the government position held."
+      ],
+      "error_type": "remove_operator_meta_prose_and_keep_the_title_on_the_same_position_record",
+      "verification": {
+        "full_pipeline_verified": true,
+        "candidate_f1": 1.0,
+        "candidate_exact": true,
+        "result_index": 6,
+        "candidate_result": "bundled-verification:source-index-1105"
+      }
+    }
+  ]
+}

@@ -1,0 +1,244 @@
+{
+  "examples": [
+    {
+      "question": "Who was the 1996 coach of the team owned by Jerry Jones?",
+      "input": {
+        "question": "Who was the 1996 coach of the team owned by Jerry Jones?",
+        "entities": [
+          {
+            "id": "E0",
+            "surface": "Jerry Jones"
+          },
+          {
+            "id": "E1",
+            "surface": "dallas cowboys"
+          }
+        ],
+        "triples": [
+          {
+            "object": "E0",
+            "relation_label": [
+              "sports",
+              "professional sports team",
+              "owner s"
+            ],
+            "subject": "V0"
+          },
+          {
+            "object": "V1",
+            "relation_label": [
+              "american football",
+              "football team",
+              "historical coaching staff"
+            ],
+            "subject": "V0"
+          },
+          {
+            "object": "V2",
+            "relation_label": [
+              "american football",
+              "football historical coach position",
+              "coach"
+            ],
+            "subject": "V1"
+          }
+        ],
+        "answer_var": "V2"
+      },
+      "output": {
+        "operators": [
+          {
+            "type": "TC",
+            "inputs": [],
+            "input_var": "V1",
+            "attribute_relation_label": [
+              "american football",
+              "football historical coach position",
+              "from"
+            ],
+            "attribute_relation_labels": [],
+            "value": "1996",
+            "value_type": "year"
+          },
+          {
+            "type": "NO_EQUAL",
+            "inputs": [],
+            "input_var": "V2",
+            "attribute_relation_label": [],
+            "attribute_relation_labels": [],
+            "value": "dallas cowboys",
+            "value_type": "entity"
+          }
+        ]
+      },
+      "decomposition": [
+        "Jerry Jones is the owner s of the professional sports team. Who is the historical coaching staff of the football team? Who is the coach of the football historical coach position?"
+      ],
+      "source": {
+        "split": "CWQ train",
+        "operator_file": "/workspace/LlamaFactory-main/data/cwq_operator_train.json",
+        "decompose_file": "/workspace/LlamaFactory-main/data/cwq_decompose_train.json",
+        "row_index": 4,
+        "verified_official_train": true,
+        "test_question_overlap": false
+      }
+    },
+    {
+      "question": "When did the team who has Terry Collins in leadership last win the world series?",
+      "input": {
+        "question": "When did the team who has Terry Collins in leadership last win the world series?",
+        "entities": [
+          {
+            "id": "E0",
+            "surface": "Terry Collins"
+          },
+          {
+            "id": "E1",
+            "surface": "mets"
+          }
+        ],
+        "triples": [
+          {
+            "object": "E0",
+            "relation_label": [
+              "organization",
+              "leadership",
+              "person"
+            ],
+            "subject": "V0"
+          },
+          {
+            "object": "V0",
+            "relation_label": [
+              "organization",
+              "organization",
+              "leadership"
+            ],
+            "subject": "V1"
+          },
+          {
+            "object": "V2",
+            "relation_label": [
+              "sports",
+              "sports team",
+              "championships"
+            ],
+            "subject": "V1"
+          }
+        ],
+        "answer_var": "V2"
+      },
+      "output": {
+        "operators": [
+          {
+            "type": "ARGMAX",
+            "inputs": [],
+            "input_var": "V2",
+            "attribute_relation_label": [
+              "time",
+              "event",
+              "end date"
+            ],
+            "attribute_relation_labels": [],
+            "value": "",
+            "value_type": ""
+          },
+          {
+            "type": "NO_EQUAL",
+            "inputs": [],
+            "input_var": "V2",
+            "attribute_relation_label": [],
+            "attribute_relation_labels": [],
+            "value": "mets",
+            "value_type": "entity"
+          }
+        ]
+      },
+      "decomposition": [
+        "Terry Collins is the person of the leadership. He/She is the leadership of the organization. When is the championships of the sports team?"
+      ],
+      "source": {
+        "split": "CWQ train",
+        "operator_file": "/workspace/LlamaFactory-main/data/cwq_operator_train.json",
+        "decompose_file": "/workspace/LlamaFactory-main/data/cwq_decompose_train.json",
+        "row_index": 11,
+        "verified_official_train": true,
+        "test_question_overlap": false
+      }
+    },
+    {
+      "question": "In what year did the basketball team whose head coach is Kevin McHale win their first championship game?",
+      "input": {
+        "question": "In what year did the basketball team whose head coach is Kevin McHale win their first championship game?",
+        "entities": [
+          {
+            "id": "E0",
+            "surface": "Kevin McHale"
+          },
+          {
+            "id": "E1",
+            "surface": "houston rockets"
+          }
+        ],
+        "triples": [
+          {
+            "object": "E0",
+            "relation_label": [
+              "basketball",
+              "basketball team",
+              "head coach"
+            ],
+            "subject": "V0"
+          },
+          {
+            "object": "V1",
+            "relation_label": [
+              "sports",
+              "sports team",
+              "championships"
+            ],
+            "subject": "V0"
+          }
+        ],
+        "answer_var": "V1"
+      },
+      "output": {
+        "operators": [
+          {
+            "type": "ARGMIN",
+            "inputs": [],
+            "input_var": "V1",
+            "attribute_relation_label": [
+              "time",
+              "event",
+              "start date"
+            ],
+            "attribute_relation_labels": [],
+            "value": "",
+            "value_type": ""
+          },
+          {
+            "type": "NO_EQUAL",
+            "inputs": [],
+            "input_var": "V1",
+            "attribute_relation_label": [],
+            "attribute_relation_labels": [],
+            "value": "houston rockets",
+            "value_type": "entity"
+          }
+        ]
+      },
+      "decomposition": [
+        "Kevin McHale is the head coach of the basketball team. What is the championships of the sports team?"
+      ],
+      "source": {
+        "split": "CWQ train",
+        "operator_file": "/workspace/LlamaFactory-main/data/cwq_operator_train.json",
+        "decompose_file": "/workspace/LlamaFactory-main/data/cwq_decompose_train.json",
+        "row_index": 34,
+        "verified_official_train": true,
+        "test_question_overlap": false
+      }
+    }
+  ]
+}

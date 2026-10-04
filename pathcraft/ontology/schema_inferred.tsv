@@ -1,0 +1,6 @@
+# Endpoint-observed legacy properties without type.property metadata.
+# Domain/range are accepted only from unanimous or near-unanimous endpoint
+# node types. Ambiguous numeric-string and event-link properties stay unresolved.
+common.notable_for	common.notable_for.object	type.type
+common.topic	kg.object_profile.prominent_type	type.type
+sports.sports_team	sports.sports_team.rivalry	sports.team_rivalry

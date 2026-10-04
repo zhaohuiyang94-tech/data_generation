@@ -1,0 +1,17 @@
+### Base Llama 3.1 8B selector (no LoRA adapter)
+model_name_or_path: /llm/Meta-Llama-3.1-8B-Instruct
+template: llama3
+trust_remote_code: true
+
+### LlamaFactory vLLM backend
+infer_backend: vllm
+infer_dtype: float16
+vllm_maxlen: 4096
+vllm_gpu_util: 0.90
+vllm_enforce_eager: true
+vllm_config: '{"max_num_seqs": 8}'
+
+### Deterministic graph selection
+do_sample: false
+max_new_tokens: 512
+repetition_penalty: 1.0

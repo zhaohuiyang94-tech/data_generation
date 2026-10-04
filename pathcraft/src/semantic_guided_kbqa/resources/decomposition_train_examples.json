@@ -1,0 +1,306 @@
+{
+  "policy": "Actual verified train questions/decompositions; controlled corruptions only of these train paths. No test-derived anonymous examples.",
+  "examples": [
+    {
+      "question": "what is the name of justin bieber brother",
+      "decomposition": [
+        "Who is the sibling s of person Justin Bieber? Who is the sibling of the sibling relationship?",
+        "Male is the gender of the person."
+      ],
+      "source": {
+        "split": "train",
+        "file": "data/webqsp/finetune/decompose_train.json",
+        "row_index": 0,
+        "verified_official_train": true,
+        "max_test_text_similarity": 0.7532467532467533
+      },
+      "corruptions": [
+        {
+          "decomposition": [
+            "Who is the sibling s of person Justin Bieber? Who is the sibling of the sibling relationship?"
+          ],
+          "issues": [
+            "LOST_CONSTRAINT: question requires Male is the gender of the person. but this condition is absent from the current path."
+          ],
+          "mutation": "drop_constraint_item"
+        },
+        {
+          "decomposition": [
+            "Who is the sibling s of person Justin Bieber?",
+            "Male is the gender of the person."
+          ],
+          "issues": [
+            "BROKEN_PATH: question what is the name of justin bieber brother requires the terminal question Who is the sibling of the sibling relationship? but the current path only asks Who is the sibling s of person Justin Bieber?"
+          ],
+          "mutation": "drop_terminal_hop"
+        }
+      ]
+    },
+    {
+      "question": "what college did matt lauer attend",
+      "decomposition": [
+        "What is the education of person Matt Lauer? What is the institution of the education?",
+        "College/University is the notable types of the topic."
+      ],
+      "source": {
+        "split": "train",
+        "file": "data/webqsp/finetune/decompose_train.json",
+        "row_index": 50,
+        "verified_official_train": true,
+        "max_test_text_similarity": 0.8285714285714286
+      },
+      "corruptions": [
+        {
+          "decomposition": [
+            "What is the education of person Matt Lauer? What is the institution of the education?"
+          ],
+          "issues": [
+            "LOST_CONSTRAINT: question requires College/University is the notable types of the topic. but this condition is absent from the current path."
+          ],
+          "mutation": "drop_constraint_item"
+        },
+        {
+          "decomposition": [
+            "What is the education of person Matt Lauer?",
+            "College/University is the notable types of the topic."
+          ],
+          "issues": [
+            "BROKEN_PATH: question what college did matt lauer attend requires the terminal question What is the institution of the education? but the current path only asks What is the education of person Matt Lauer?"
+          ],
+          "mutation": "drop_terminal_hop"
+        }
+      ]
+    },
+    {
+      "question": "what influenced vincent van gogh work",
+      "decomposition": [
+        "What is influence node Vincent van Gogh influenced by?"
+      ],
+      "source": {
+        "split": "train",
+        "file": "data/webqsp/finetune/decompose_train.json",
+        "row_index": 132,
+        "verified_official_train": true,
+        "max_test_text_similarity": 0.5641025641025641
+      },
+      "corruptions": [
+        {
+          "decomposition": [
+            "Who did Vincent van Gogh influence?"
+          ],
+          "issues": [
+            "WRONG_DIRECTION: the question asks for influences on the person, while this path asks for people influenced by him."
+          ],
+          "mutation": "invert_relation_direction"
+        }
+      ]
+    },
+    {
+      "question": "what are the basic beliefs of sikhism",
+      "decomposition": [
+        "What is the beliefs of religion Sikhism?"
+      ],
+      "source": {
+        "split": "train",
+        "file": "data/webqsp/finetune/decompose_train.json",
+        "row_index": 207,
+        "verified_official_train": true,
+        "max_test_text_similarity": 0.6493506493506493
+      },
+      "corruptions": [
+        {
+          "decomposition": [
+            "What is the name of religion Sikhism?"
+          ],
+          "issues": [
+            "WRONG_TARGET: this train question asks for beliefs, not the name of the religion."
+          ],
+          "mutation": "replace_requested_attribute"
+        }
+      ]
+    },
+    {
+      "question": "what are the official languages in spain",
+      "decomposition": [
+        "Who is the official language of country Spain?"
+      ],
+      "source": {
+        "split": "train",
+        "file": "data/webqsp/finetune/decompose_train.json",
+        "row_index": 1253,
+        "verified_official_train": true,
+        "max_test_text_similarity": 0.8333333333333334
+      },
+      "corruptions": [
+        {
+          "decomposition": [
+            "What are the languages spoken of country Spain?"
+          ],
+          "issues": [
+            "LOST_CONSTRAINT: spoken language does not retain the requested official status."
+          ],
+          "mutation": "remove_official_relation_qualifier"
+        }
+      ]
+    },
+    {
+      "question": "what musical instruments did duke ellington play",
+      "decomposition": [
+        "What is the instruments played of group member Duke Ellington?"
+      ],
+      "source": {
+        "split": "train",
+        "file": "data/webqsp/finetune/decompose_train.json",
+        "row_index": 935,
+        "verified_official_train": true,
+        "max_test_text_similarity": 0.7291666666666666
+      },
+      "corruptions": []
+    },
+    {
+      "question": "what country is next to russia",
+      "decomposition": [
+        "What is the adjoin s of location Russia? What is the adjoins of the adjoining relationship?",
+        "Country is the notable types of the topic."
+      ],
+      "source": {
+        "split": "train",
+        "file": "data/webqsp/finetune/decompose_train.json",
+        "row_index": 980,
+        "verified_official_train": true,
+        "max_test_text_similarity": 0.7333333333333333
+      },
+      "corruptions": [
+        {
+          "decomposition": [
+            "What is the adjoin s of location Russia? What is the adjoins of the adjoining relationship?"
+          ],
+          "issues": [
+            "LOST_CONSTRAINT: question requires Country is the notable types of the topic. but this condition is absent from the current path."
+          ],
+          "mutation": "drop_constraint_item"
+        }
+      ]
+    },
+    {
+      "question": "Who was the 1996 coach of the team owned by Jerry Jones?",
+      "decomposition": [
+        "Jerry Jones is the owner s of the professional sports team. Who is the historical coaching staff of the football team? Who is the coach of the football historical coach position?",
+        "1996 overlaps the tenure of the football historical coach position."
+      ],
+      "source": {
+        "split": "CWQ train",
+        "operator_file": "/workspace/LlamaFactory-main/data/cwq_operator_train.json",
+        "decompose_file": "/workspace/LlamaFactory-main/data/cwq_decompose_train.json",
+        "row_index": 4,
+        "verified_official_train": true,
+        "test_question_overlap": false,
+        "augmentation": "Constraint clauses derived ONLY from this train question and its train operators."
+      },
+      "corruptions": [
+        {
+          "decomposition": [
+            "Jerry Jones is the owner s of the professional sports team. Who is the historical coaching staff of the football team? Who is the coach of the football historical coach position?"
+          ],
+          "issues": [
+            "LOST_CONSTRAINT: the explicit year, event type or extrema from the train question was omitted."
+          ],
+          "mutation": "remove_train_question_constraint_clauses"
+        }
+      ],
+      "source_decomposition": [
+        "Jerry Jones is the owner s of the professional sports team. Who is the historical coaching staff of the football team? Who is the coach of the football historical coach position?"
+      ]
+    },
+    {
+      "question": "When did the team who has Terry Collins in leadership last win the world series?",
+      "decomposition": [
+        "Terry Collins is the person of the leadership. He/She is the leadership of the organization. When is the championships of the sports team?",
+        "World Series is the type of the championship event.",
+        "Return the latest championship event by its end date."
+      ],
+      "source": {
+        "split": "CWQ train",
+        "operator_file": "/workspace/LlamaFactory-main/data/cwq_operator_train.json",
+        "decompose_file": "/workspace/LlamaFactory-main/data/cwq_decompose_train.json",
+        "row_index": 11,
+        "verified_official_train": true,
+        "test_question_overlap": false,
+        "augmentation": "Constraint clauses derived ONLY from this train question and its train operators."
+      },
+      "corruptions": [
+        {
+          "decomposition": [
+            "Terry Collins is the person of the leadership. He/She is the leadership of the organization. When is the championships of the sports team?"
+          ],
+          "issues": [
+            "LOST_CONSTRAINT: the explicit year, event type or extrema from the train question was omitted."
+          ],
+          "mutation": "remove_train_question_constraint_clauses"
+        }
+      ],
+      "source_decomposition": [
+        "Terry Collins is the person of the leadership. He/She is the leadership of the organization. When is the championships of the sports team?"
+      ]
+    },
+    {
+      "question": "In what year did the basketball team whose head coach is Kevin McHale win their first championship game?",
+      "decomposition": [
+        "Kevin McHale is the head coach of the basketball team. What is the championships of the sports team?",
+        "Return the earliest championship event by its start date, then its year."
+      ],
+      "source": {
+        "split": "CWQ train",
+        "operator_file": "/workspace/LlamaFactory-main/data/cwq_operator_train.json",
+        "decompose_file": "/workspace/LlamaFactory-main/data/cwq_decompose_train.json",
+        "row_index": 34,
+        "verified_official_train": true,
+        "test_question_overlap": false,
+        "augmentation": "Constraint clauses derived ONLY from this train question and its train operators."
+      },
+      "corruptions": [
+        {
+          "decomposition": [
+            "Kevin McHale is the head coach of the basketball team. What is the championships of the sports team?"
+          ],
+          "issues": [
+            "LOST_CONSTRAINT: the explicit year, event type or extrema from the train question was omitted."
+          ],
+          "mutation": "remove_train_question_constraint_clauses"
+        }
+      ],
+      "source_decomposition": [
+        "Kevin McHale is the head coach of the basketball team. What is the championships of the sports team?"
+      ]
+    },
+    {
+      "question": "what country was theodor schwann born in",
+      "source_decomposition": [
+        "What is the place of birth of person Theodor Schwann?"
+      ],
+      "decomposition": [
+        "What is the place of birth of person Theodor Schwann? What is location the place of birth containedby?",
+        "Country is the notable type of the containing location."
+      ],
+      "source": {
+        "split": "train",
+        "file": "data/webqsp/finetune/decompose_train.json",
+        "row_index": 1929,
+        "verified_official_train": true,
+        "max_test_text_similarity": 0.6666666666666666,
+        "augmentation": "Country hop/type derived from the explicit COUNTRY in this train question; original train decomposition was incomplete."
+      },
+      "corruptions": [
+        {
+          "decomposition": [
+            "What is the place of birth of person Theodor Schwann?"
+          ],
+          "issues": [
+            "BROKEN_PATH: this train question explicitly requests a country, but the current path ends at an unconstrained birthplace."
+          ],
+          "mutation": "drop_terminal_hop"
+        }
+      ]
+    }
+  ]
+}

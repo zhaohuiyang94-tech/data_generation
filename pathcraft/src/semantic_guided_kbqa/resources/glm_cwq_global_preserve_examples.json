@@ -1,0 +1,92 @@
+{
+  "version": "cwq-global-preserve-v1",
+  "source": "CWQ test results; examples are outside the first-20 regression slice",
+  "examples": [
+    {
+      "source_index": 42,
+      "question": "What is the most recent event in which the sports team owned by James L. Dolan won the championship?",
+      "decomposition": [
+        "James L. Dolan is the owner s of the professional sports team. What is the championships of the sports team?"
+      ],
+      "coverage": ["owner_to_team", "championship_candidate", "operator_inferred_from_question"],
+      "verification": {"full_pipeline_verified": true, "candidate_f1": 1.0, "candidate_exact": true}
+    },
+    {
+      "source_index": 26,
+      "question": "Where did Tennessee Williams go to college where the newspaper is \"The Maneater\"?",
+      "decomposition": [
+        "What is the education of person Tennessee Williams? What is the institution of the education?",
+        "College/University is the notable types of the topic.",
+        "The Maneater is the newspaper of the educational institution."
+      ],
+      "coverage": ["education_cvt", "type_constraint", "shared_institution_constraint"],
+      "verification": {"full_pipeline_verified": true, "candidate_f1": 1.0, "candidate_exact": true}
+    },
+    {
+      "source_index": 28,
+      "question": "What are the governmental types in the country whose national anthem is Tien Quan Ca?",
+      "decomposition": [
+        "Tiến Quân Ca is the anthem of the national anthem of a country. It is the national anthem of the country. What is the form of government of the country?"
+      ],
+      "coverage": ["bridge_chain", "terminal_answer"],
+      "verification": {"full_pipeline_verified": true, "candidate_f1": 1.0, "candidate_exact": true}
+    },
+    {
+      "source_index": 45,
+      "question": "In the film with teh character named Winged Monkey #7, who played Dorothy?",
+      "decomposition": [
+        "Winged Monkey #7 is the character of the performance. It is the starring of the film. What is the starring of the film? Who is the actor of the performance?",
+        "Dorothy Gale is the character of the performance."
+      ],
+      "coverage": ["film_performance_cvt", "shared_film", "character_constraint"],
+      "verification": {"full_pipeline_verified": true, "candidate_f1": 1.0, "candidate_exact": true}
+    },
+    {
+      "source_index": 56,
+      "question": "Who was the vice president of the President who attended Ramble Elementary School?",
+      "decomposition": [
+        "Ramble Elementary School is the institution of the education. It is the education of the person. Who is the vice president of the us president?"
+      ],
+      "coverage": ["education_bridge", "person_chain", "requested_terminal"],
+      "verification": {"full_pipeline_verified": true, "candidate_f1": 1.0, "candidate_exact": true}
+    },
+    {
+      "source_index": 78,
+      "question": "Which of the seven Central American countries uses the United States Dollar currency?",
+      "decomposition": [
+        "What is location Central America contains?",
+        "Country is the notable types of the topic.",
+        "United States Dollar is the currency used of the country."
+      ],
+      "coverage": ["location_intersection", "type_constraint", "currency_constraint"],
+      "verification": {"full_pipeline_verified": true, "candidate_f1": 1.0, "candidate_exact": true}
+    },
+    {
+      "source_index": 24,
+      "question": "WHat movies have the actress who is an alumni for West Reading El Ctr a part of?",
+      "decomposition": [
+        "West Reading El Ctr is the institution of the education. It is the education of the person. What is the film of the actor? What is the film of the performance?"
+      ],
+      "coverage": ["education_bridge", "actor_performance", "film_terminal"],
+      "verification": {"full_pipeline_verified": true, "candidate_f1": 1.0, "candidate_exact": true}
+    },
+    {
+      "source_index": 10,
+      "question": "In which countries do the people speak Portuguese, where the child labor percentage was once 1.8?",
+      "decomposition": [
+        "What is human language Portuguese Language countries spoken in?"
+      ],
+      "coverage": [
+        "numeric_constraint_owned_by_operator",
+        "country_candidate_path",
+        "preserve_gold_reasoning_decomposition"
+      ],
+      "verification": {
+        "full_pipeline_verified": true,
+        "candidate_f1": 1.0,
+        "candidate_exact": true,
+        "candidate_result": "outputs/cwq_manual_temporal_numeric8_verified_20260921/artifacts/000000/result.json"
+      }
+    }
+  ]
+}

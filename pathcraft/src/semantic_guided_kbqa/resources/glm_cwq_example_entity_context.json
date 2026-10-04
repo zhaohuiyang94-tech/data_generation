@@ -1,0 +1,67 @@
+{
+  "What was the name of the team that won the 2008 FIFA Club World Cup Final championship?": [
+    {"id": "m.053nq3y", "name": "2008 FIFA Club World Cup Final", "types": ["Event", "Football Match"], "start_date": "2008"}
+  ],
+  "What does the religion who worships in Barcelona Cathedral call their God?": [
+    {"id": "m.0vlyb", "name": "Barcelona Cathedral", "types": ["Building", "Place of worship"]}
+  ],
+  "Who did the voice of character Kovu?": [
+    {"id": "m.0bnznr", "name": "Kovu", "types": ["Fictional Character", "Film character"]}
+  ],
+  "What movie was Miley Cyrus in with a character named Theresa Russo?": [
+    {"id": "m.0bdxs5", "name": "Miley Cyrus", "types": ["Person", "Film actor", "TV Actor"]},
+    {"id": "g.121sxjvg", "name": "Theresa Russo", "types": ["Fictional Character", "Film character", "TV Character"]}
+  ],
+  "What college with the least number of undergraduates did Charles Drew attend?": [
+    {"id": "m.018t67", "name": "Charles R. Drew", "types": ["Person", "Physician", "Academic"]},
+    {"id": "m.01y2hnl", "name": "College/University", "types": ["Type"]}
+  ],
+  "What college did Drew Brees attend that has number of undergraduates the largest?": [
+    {"id": "m.030bdd", "name": "Drew Brees", "types": ["Person", "Athlete", "American football player"]},
+    {"id": "m.01y2hnl", "name": "College/University", "types": ["Type"]}
+  ],
+  "Who was an influence to Eleanor Roosevelt and was the US president during World War 2?": [
+    {"id": "m.081pw", "name": "World War II", "types": ["Military Conflict", "Event", "War"], "start_date": "1939-09-01", "end_date": "1945-09-02"},
+    {"id": "m.060d2", "name": "President of the United States", "types": ["Government Office or Title"]},
+    {"id": "m.02n9k", "name": "Eleanor Roosevelt", "types": ["Person", "Politician", "Influence Node"]}
+  ],
+  "Who was the voice of Lola Bunny and was nominated in the Gotham Independent Film Award 2009?": [
+    {"id": "m.0534r8", "name": "Lola Bunny", "types": ["Fictional Character", "Film character", "TV Character"]},
+    {"id": "m.02nsjvf", "name": "Voice", "types": ["Special film performance type", "Special TV performance type"]},
+    {"id": "m.080d12s", "name": "Gotham Independent Film Awards 2009", "types": ["Award ceremony", "Event"], "start_date": "2009-11-30", "end_date": "2009-11-30"}
+  ],
+  "Which TV series with a \"tvrage_id\" less than 3050 was Mark Harmon the star of?": [
+    {"id": "m.037gjc", "name": "Mark Harmon", "types": ["Person", "TV Actor", "Film actor"]}
+  ],
+  "What is the most recent event in which the sports team owned by James L. Dolan won the championship?": [
+    {"id": "m.0469ts", "name": "James L. Dolan", "types": ["Person", "Sports Team Owner"]}
+  ],
+  "Where did Tennessee Williams go to college where the newspaper is \"The Maneater\"?": [
+    {"id": "m.0c4y8", "name": "Tennessee Williams", "types": ["Person", "Author"]},
+    {"id": "m.01y2hnl", "name": "College/University", "types": ["Type"]},
+    {"id": "m.04pk3f", "name": "The Maneater", "types": ["School newspaper", "Newspaper"]}
+  ],
+  "What are the governmental types in the country whose national anthem is Tien Quan Ca?": [
+    {"id": "m.01kvf8", "name": "Tiến Quân Ca", "types": ["Composition", "National Anthem"]}
+  ],
+  "In the film with teh character named Winged Monkey #7, who played Dorothy?": [
+    {"id": "m.0yj6trj", "name": "Winged Monkey #7", "types": ["Fictional Character", "Film character"]},
+    {"id": "m.020hj1", "name": "Dorothy Gale", "types": ["Fictional Character", "Film character"]}
+  ],
+  "Who was the vice president of the President who attended Ramble Elementary School?": [
+    {"id": "m.0b6xvr8", "name": "Ramble Elementary", "types": ["Educational Institution"]}
+  ],
+  "In which countries do the people speak Portuguese, where the child labor percentage was once 1.8?": [
+    {"id": "m.05zjd", "name": "Portuguese Language", "types": ["Human Language"]}
+  ],
+  "In what events that ended prior to 28 October 1981 did the Dodgers win the World Series?": [
+    {"id": "m.04mjl", "name": "Los Angeles Dodgers", "types": ["Baseball Team", "Sports Team"]}
+  ],
+  "When was the last championship won by the 1970 NBA Finals Champions?": [
+    {"id": "m.0cs1x4", "name": "1970 NBA Finals", "types": ["Event", "Sports League Championship Event"], "start_date": "1970-04-24"}
+  ],
+  "Who is the current governor of the governmental jurisdiction in which there's a governmental body called Wyoming House of Representatives?": [
+    {"id": "m.0dwkky", "name": "Wyoming House of Representatives", "types": ["Governmental Body"]},
+    {"id": "m.0fkvn", "name": "Governor", "types": ["Government office category", "Job title", "Leadership Role"]}
+  ]
+}

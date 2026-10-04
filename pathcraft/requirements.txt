@@ -1,0 +1,3 @@
+# The CWQ v42 runtime uses only the Python 3.11 standard library.
+# Model, embedding and Freebase access are HTTP services configured in
+# configs/pipeline.v42.json; their server-side dependencies are not bundled.
